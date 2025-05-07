@@ -1,0 +1,204 @@
+/* Variables de tema */
+:root {
+    --color-primary: #0073aa;
+    --color-primary-hover: #006799;
+    --color-sidebar-bg: #23282d;
+    --color-sidebar-text: #f1f1f1;
+    --color-main-bg: #fdfdfd;
+    --color-card-bg: #ffffff;
+    --color-border: #e1e1e1;
+    --color-text: #333333;
+    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset y box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Layout principal */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+        "header header"
+        "nav    main";
+    height: 100vh;
+    font-family: var(--font-sans);
+    background-color: var(--color-main-bg);
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+/* Header */
+h1 {
+    grid-area: header;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 18px 24px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sidebar navegación */
+#contenido {
+    grid-area: nav;
+    background-color: var(--color-sidebar-bg);
+    padding: 24px 12px;
+    border-right: 1px solid #1d1f21;
+    overflow-y: auto;
+}
+
+/* Botones del sidebar */
+#contenido button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--color-sidebar-text);
+    background: transparent;
+    border: none;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, border-left-color 0.2s;
+}
+
+#contenido button:hover {
+    background: rgba(255,255,255,0.05);
+    border-left-color: var(--color-primary);
+}
+
+#contenido button:focus {
+    outline: none;
+    background: rgba(255,255,255,0.1);
+    border-left-color: var(--color-primary-hover);
+}
+
+/* Área principal */
+#datos {
+    grid-area: main;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* Tarjetas para contenido */
+#datos > * {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Formularios en tarjetitas */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+form > * {
+    margin: 0;
+}
+
+form button {
+    grid-column: span 2;
+    justify-self: start;
+}
+
+/* Inputs estilizados */
+input {
+    padding: 8px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* Botones principales */
+button {
+    padding: 10px 16px;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Tablas dentro de tarjetas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+th, td {
+    border: 1px solid var(--color-border);
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #fafafa;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Scrollbars suaves */
+#contenido::-webkit-scrollbar,
+#datos::-webkit-scrollbar {
+    width: 6px;
+}
+
+#contenido::-webkit-scrollbar-thumb,
+#datos::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+/* Responsive: colapsar sidebar en pantallas pequeñas */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "nav"
+            "main";
+    }
+    #contenido {
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
